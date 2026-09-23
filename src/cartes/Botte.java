@@ -6,4 +6,7 @@ public class Botte extends Probleme {
 		super(type);
 	}
 
+	public String toString() {
+		return this.getType().getNomBotte();
+	}
 }
