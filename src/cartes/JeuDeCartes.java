@@ -50,4 +50,34 @@ public class JeuDeCartes {
 			this.carte = carte;
 		}
 	}
+	public Carte[] donnerCartes() {
+	    int total = 0;
+	    for (Configuration config : typesDeCarte) {
+	        total += config.nbExemplaires;
+	    }
+
+	    Carte[] cartes = new Carte[total];
+	    int index = 0;
+	    for (Configuration config : typesDeCarte) {
+	        for (int i = 0; i < config.nbExemplaires; i++) {
+	            cartes[index++] = config.carte;
+	        }
+	    }
+	    return cartes;
+	}
+
+	public boolean checkCount() {
+	    Carte[] cartes = donnerCartes();
+	    int index = 0;
+
+	    for (Configuration config : typesDeCarte) {
+	        for (int i = 0; i < config.nbExemplaires; i++) {
+	            if (index >= cartes.length || !cartes[index].equals(config.carte)) {
+	                return false;
+	            }
+	            index++;
+	        }
+	    }
+	    return index == cartes.length;
+	}
 }
