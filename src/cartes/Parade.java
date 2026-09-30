@@ -10,4 +10,11 @@ public class Parade extends Bataille {
 		return this.getType().getNomParade();
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Parade parade) {
+			return this.getType().getNomParade().equals(parade.getType().getNomParade());
+		}
+		return false;
+	}
 }

@@ -35,7 +35,10 @@ public class JeuDeCartes {
 
 		for (int i = 0; i < 19; i++) {
 			Configuration config = typesDeCarte[i];
-			sb.append(config.nbExemplaires).append(" ").append(config.carte.toString()).append("\n");
+			sb.append(config.nbExemplaires);
+			sb.append(" ");
+			sb.append(config.carte);
+			sb.append("\n");
 		}
 
 		return sb.toString();
@@ -49,35 +52,44 @@ public class JeuDeCartes {
 			this.nbExemplaires = nbExemplaires;
 			this.carte = carte;
 		}
-	}
-	public Carte[] donnerCartes() {
-	    int total = 0;
-	    for (Configuration config : typesDeCarte) {
-	        total += config.nbExemplaires;
-	    }
 
-	    Carte[] cartes = new Carte[total];
-	    int index = 0;
-	    for (Configuration config : typesDeCarte) {
-	        for (int i = 0; i < config.nbExemplaires; i++) {
-	            cartes[index++] = config.carte;
-	        }
-	    }
-	    return cartes;
+		private int getNbExemplaires() {
+			return nbExemplaires;
+		}
+
+		private Carte getCarte() {
+			return carte;
+		}
+	}
+
+	public Carte[] donnerCartes() {
+		int total = 0;
+		for (Configuration config : typesDeCarte) {
+			total += config.getNbExemplaires();
+		}
+
+		Carte[] cartes = new Carte[total];
+		int index = 0;
+		for (Configuration config : typesDeCarte) {
+			for (int i = 0; i < config.nbExemplaires; i++) {
+				cartes[index++] = config.getCarte();
+			}
+		}
+		return cartes;
 	}
 
 	public boolean checkCount() {
-	    Carte[] cartes = donnerCartes();
-	    int index = 0;
+		Carte[] cartes = donnerCartes();
+		int index = 0;
 
-	    for (Configuration config : typesDeCarte) {
-	        for (int i = 0; i < config.nbExemplaires; i++) {
-	            if (index >= cartes.length || !cartes[index].equals(config.carte)) {
-	                return false;
-	            }
-	            index++;
-	        }
-	    }
-	    return index == cartes.length;
+		for (Configuration config : typesDeCarte) {
+			for (int i = 0; i < config.getNbExemplaires(); i++) {
+				if (index >= cartes.length || !cartes[index].equals(config.carte)) {
+					return false;
+				}
+				index++;
+			}
+		}
+		return index == cartes.length;
 	}
 }

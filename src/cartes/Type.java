@@ -8,7 +8,8 @@ public enum Type {
 	private String nomParade;
 	private String nomBotte;
 
-	Type(String nomAttaque, String nomParade, String nomBotte) {
+	// TODO visibilité
+	private Type(String nomAttaque, String nomParade, String nomBotte) {
 		this.nomAttaque = nomAttaque;
 		this.nomParade = nomParade;
 		this.nomBotte = nomBotte;
